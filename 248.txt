@@ -1,0 +1,81 @@
+<?php
+
+// Función para calcular el costo total y los créditos
+function calcularCosto($promedio, $tipo) {
+    // Definir el valor del crédito según el tipo de estudiante
+    $valorCreditoPregrado = 500;
+    $valorCreditoPosgrado = 300;
+
+    // Variables para créditos y descuento
+    $creditos = 0;
+    $descuento = 0;
+    $totalPagar = 0;
+
+    // Evaluar las condiciones para pregrado
+    if ($tipo == "pregrado") {
+        if ($promedio >= 9.5) {
+            $creditos = 30;
+            $descuento = 0.25;
+        } elseif ($promedio >= 7.0 && $promedio < 9.5) {
+            $creditos = 25;
+            $descuento = 0.10;
+        } elseif ($promedio > 6.0 && $promedio < 7.0) {
+            $creditos = 20;
+            $descuento = 0.0;
+        } elseif ($promedio >= 5.0 && $promedio < 6.0) {
+            $creditos = 15;
+            $descuento = 0.0;
+        } else {
+            return "No puede matricularse debido al bajo promedio.";
+        }
+
+        // Calcular el costo total
+        $totalPagar = $creditos * $valorCreditoPregrado * (1 - $descuento);
+        
+    } 
+    // Evaluar las condiciones para posgrado
+    elseif ($tipo == "posgrado") {
+        if ($promedio >= 8.5) {
+            $creditos = 20;
+            $descuento = 0.20;
+        } else {
+            $creditos = 15;
+            $descuento = 0.0;
+        }
+
+        // Calcular el costo total
+        $totalPagar = $creditos * $valorCreditoPosgrado * (1 - $descuento);
+    } 
+    else {
+        return "Tipo de estudiante no válido.";
+    }
+
+    // Retornar el resultado como un array asociativo
+    return [
+        "creditos" => $creditos,
+        "descuento" => $descuento * 100,  // Convertir descuento a porcentaje
+        "totalPagar" => $totalPagar
+    ];
+}
+
+// Solicitar datos al usuario
+echo "Ingrese el tipo de estudiante (pregrado/posgrado): ";
+$tipo = trim(fgets(STDIN));
+
+echo "Ingrese el promedio académico: ";
+$promedio = floatval(trim(fgets(STDIN)));
+
+// Calcular el costo y los créditos
+$resultado = calcularCosto($promedio, $tipo);
+
+// Mostrar resultados
+if (is_array($resultado)) {
+    echo "Créditos a cursar: " . $resultado['creditos'] . "\n";
+    echo "Descuento: " . $resultado['descuento'] . "%\n";
+    echo "Total a pagar: $" . number_format($resultado['totalPagar'], 2) . "\n";
+} else {
+    // Si no es un array, se imprime un mensaje de error
+    echo $resultado . "\n";
+}
+
+?>
