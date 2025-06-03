@@ -1,5 +1,10 @@
+{% load static %}
 <html>
 <head>
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Blog de ale la mejor</title>
     <style>
         .filtro-usuarios {
@@ -26,7 +31,7 @@
     </style>
 </head>
 <body>
-    <div style="background: rgb(250, 117, 255);">
+    <div class="page-header" style="background: rgb(252, 160, 255);">
         <h1><a href="/">Blog de ale la mejor</a></h1>
     </div>
     <!-- Filtro por usuario usando enlaces -->
@@ -49,7 +54,7 @@
 
    <!-- Lista de publicaciones -->
 
-   <div>
+   <div class="post">
     {% for publicacion in publicaciones %}
     <p>Publicado: {{ publicacion.fecha_publicacion }} por autor/a: {{ publicacion.autor.username }} </p>
     <h2> <a href=""> {{publicacion.titulo}} </a> </h2>
@@ -57,5 +62,22 @@
     <hr>    
     {% endfor %} <!--Es la adaptacion que hace Django de la funcion For -->
    </div>
+
+   <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for publicacion in publicaciones %}
+                    <div class="post">
+                            <div class="date">
+                            <p> publicado: {{ publicacion.fecha_publicacion }}</p>
+                            </div>
+                        <h2><a href="">{{ publicacion.titulo }}</a></h2>
+                        <p>{{ publicacion.texto|linebreaksbr }}</p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </body>
-</html>
+</html><ZZCX                                      
