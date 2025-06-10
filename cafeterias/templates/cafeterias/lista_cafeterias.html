@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Cafeterías | Evaluación 2</title>
+
+    <!-- Hoja de estilos rústico-minimalista -->
+    <link rel="stylesheet" href="{% static 'cafeterias/css/rustico.css' %}">
+</head>
+<body>
+
+<header class="site-header">
+    <h1>Cafeterías destacadas</h1>
+</header>
+
+<main class="grid">
+{% for cafe in cafeterias %}
+    <article class="card">
+        {% if cafe.imagen %}
+            <img class="card__img" src="{{ cafe.imagen.url }}" alt="{{ cafe.nombre }}">
+        {% else %}
+            <img class="card__img" src="{% static 'cafeterias/img/placeholder.jpg' %}" alt="Sin foto">
+        {% endif %}
+
+        <div class="card__body">
+            <h2 class="card__title">{{ cafe.nombre }}</h2>
+
+            <p class="card__desc">{{ cafe.descripcion|truncatechars:160 }}</p>
+
+            <ul class="ratings">
+                <li>Google <span>{{ cafe.estrellas_google }}/5</span></li>
+                <li>Comida  <span>{{ cafe.rating_comida }}/5</span></li>
+                <li>Atención <span>{{ cafe.rating_atencion }}/5</span></li>
+                <li>Ubicación <span>{{ cafe.rating_ubicacion }}/5</span></li>
+            </ul>
+        </div>
+    </article>
+{% empty %}
+    <p class="no-data">Aún no hay cafeterías cargadas.</p>
+{% endfor %}
+</main>
+
+<footer class="site-footer">
+    <small>&copy; {{ now|date:"Y" }} — Proyecto Django • Evaluación 2</small>
+</footer>
+
+</body>
+</html>

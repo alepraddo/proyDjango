@@ -1,0 +1,107 @@
+/*
+   Estética rústico/minimalista – Color primario: #b38149
+   (guardarlo en static/cafeterias/css/rustico.css)
+*/
+:root{
+    --madera:#b38149;        /* tono principal */
+    --madera-oscura:#8c6238; /* sombra */
+    --fondo:#faf7f3;
+    --texto:#2d2d2d;
+    --gris:#666;
+    --radius:12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:"Inter",Arial,Helvetica,sans-serif;
+    background:var(--fondo);
+    color:var(--texto);
+    line-height:1.6;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* — Header & footer — */
+.site-header{
+    background:var(--madera);
+    color:#fff;
+    padding:1rem 1.5rem;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.site-header h1{font-weight:700;letter-spacing:.5px}
+
+.site-footer{
+    margin-top:auto;
+    text-align:center;
+    padding:1rem 0;
+    font-size:.85rem;
+    color:var(--gris);
+}
+
+/* — Grid de tarjetas — */
+main.grid{
+    width:min(1000px,92%);
+    margin:2rem auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1.8rem;
+}
+
+/* — Tarjeta — */
+.card{
+    background:#fff;
+    border:2px solid var(--madera);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    transition:transform .15s ease, box-shadow .15s ease;
+}
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.card__img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card__body{padding:1rem 1.2rem}
+
+.card__title{
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--madera-oscura);
+    margin-bottom:.35rem;
+}
+
+.card__desc{
+    font-size:.9rem;
+    color:var(--gris);
+    margin-bottom:.8rem;
+}
+
+.ratings{
+    list-style:none;
+    font-size:.85rem;
+    display:grid;
+    gap:.25rem;
+}
+.ratings li{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px dashed rgba(0,0,0,.07);
+}
+.ratings span{
+    font-weight:600;
+    color:var(--madera-oscura);
+}
+
+.no-data{
+    text-align:center;
+    margin:4rem auto;
+    color:var(--gris);
+}
