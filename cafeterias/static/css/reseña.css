@@ -20,15 +20,18 @@ body{
     min-height:100vh;
     display:flex;
     flex-direction:column;
+    font-style: italic;
 }
 
 /* — Header & footer — */
 .site-header{
     background:var(--madera);
-    color:#fff;
+    color:#ffe180;
     padding:1rem 1.5rem;
     text-align:center;
     box-shadow:0 2px 6px rgba(0,0,0,.15);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 .site-header h1{font-weight:700;letter-spacing:.5px}
 

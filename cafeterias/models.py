@@ -8,22 +8,21 @@ class Cafeteria(models.Model):
     nombre = models.CharField(
         max_length=120,
         unique=True,
-        help_text="Nombre comercial de la cafetería",
+        help_text="Nombre de la cafetería",
     )
 
-    imagen = models.ImageField(
-        upload_to="cafeterias/",
+    imagen = models.URLField(
         blank=True,
         null=True,
-        help_text="Foto de la fachada, logo o ambiente",
+        help_text="Imagen de referencia",
     )
 
-    # ⭐ Calificación pública de Google (0-5 con un decimal)
-    estrellas_google = models.DecimalField(
+    # ⭐ Calificación Personal (0-5 con un decimal)
+    estrellas_puntuacion = models.DecimalField(
         max_digits=2,
         decimal_places=1,
         validators=[MinValueValidator(0), MaxValueValidator(5)],
-        help_text="Puntuación pública de Google (0 − 5)",
+        help_text="Puntuación personal (0 − 5)",
     )
 
     # ⭐ Valoraciones propias (1-5)
@@ -35,10 +34,16 @@ class Cafeteria(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         verbose_name="Atención del personal",
     )
-    rating_ubicacion = models.PositiveSmallIntegerField(
+    rating_precio = models.PositiveSmallIntegerField(
+        default= 0,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        verbose_name="Ubicación / Accesibilidad",
+        verbose_name="Precio",
     )
+    rating_ubicacion = models.URLField(
+    verbose_name="Ubicación",
+    help_text="Enlace a la ubicación (ej. Google Maps)"
+)
+
 
     descripcion = models.TextField(
         blank=True,
